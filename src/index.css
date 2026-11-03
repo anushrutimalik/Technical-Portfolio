@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* ── Design system: every section is a full-height panel below the fixed header ── */
+.section-shell {
+  min-height: calc(100svh - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem clamp(1.25rem, 4vh, 3rem) clamp(1.25rem, 4vh, 3rem);
+}
+
+.container-x {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .container-x { padding-inline: 2rem; }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.9);
+  text-shadow: 0 0 14px rgba(56, 189, 248, 0.55);
+}
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: rgba(125,211,252, 0.35);
+}
+
+.card {
+  position: relative;
+  background: #0a0a0e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  transition: border-color 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.card:hover {
+  border-color: rgba(125, 211, 252, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px -24px rgba(56, 189, 248, 0.45), 0 0 0 1px rgba(125, 211, 252, 0.18) inset;
+}
+
+.card-2 {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.9rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card-2:hover {
+  border-color: rgba(125, 211, 252, 0.35);
+  box-shadow: 0 0 20px rgba(125, 211, 252, 0.14);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  color: #a8b0bc;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.4rem;
+  padding: 0.3rem 0.625rem;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.chip:hover {
+  color: #e0f2fe;
+  border-color: rgba(125, 211, 252, 0.4);
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.18);
+}
+
+/* Baby-blue glow on anything hoverable / focusable */
+a, button, [role="button"], input, select, textarea, .card, .card-2, .chip {
+  transition-property: border-color, color, transform, box-shadow, background-color, filter;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+a:hover, button:hover, [role="button"]:hover {
+  filter: drop-shadow(0 0 7px rgba(125, 211, 252, 0.4));
+}
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(125, 211, 252, 0.65), 0 0 18px rgba(125, 211, 252, 0.4);
+  border-radius: 0.35rem;
+}
+
+.field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.field::placeholder { color: #5b6470; }
+.field:focus {
+  outline: none;
+  border-color: rgba(125,211,252, 0.45);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.font-display {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.font-serif-it {
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+/* Space-themed cursor: meteor with comet tail (fine pointers only) */
+@media (hover: hover) and (pointer: fine) {
+  .stardust-cursor,
+  .stardust-cursor * {
+    cursor: none;
+  }
+}
+
+.meteor-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hairline {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+@layer base {
+  :root {
+    --background: #050507;
+    --card: rgba(18, 18, 24, 0.7);
+    --border: rgba(255, 255, 255, 0.08);
+    --muted: rgba(255, 255, 255, 0.5);
+    --foreground: #f8fafc;
+  }
+  
+  body {
+    background-color: #030308;
+    color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050507;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Shiny Text Animation */
+@keyframes shinyText {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shiny-text {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shinyText 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Glow Text Animation */
+@keyframes glowText {
+  0%, 100% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+  50% { text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 35px rgba(56,189,248, 0.5); }
+}
+
+/* Static baby-blue glow (used as a text-shadow utility) */
+.text-glow-sky {
+  text-shadow: 0 0 10px rgba(125, 211, 252, 0.75), 0 0 28px rgba(56, 189, 248, 0.5);
+}
+
+.animate-glow-text {
+  animation: glowText 3.5s ease-in-out infinite;
+}
+
+/* Infinite Marquee Animations */
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 22s linear infinite;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 22s linear infinite;
+}
+
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Glassmorphism Bento Card Style */
+.bento-card {
+  background: rgba(18, 18, 24, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 48px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.06);
+}
+

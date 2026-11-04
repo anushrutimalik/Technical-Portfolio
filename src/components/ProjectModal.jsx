@@ -102,15 +102,17 @@ export default function ProjectModal({ project, onClose }) {
             >
               <Github className="w-3.5 h-3.5" /> Source
             </a>
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => sounds.playClick()}
-              className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-slate-950 transition-colors hover:bg-slate-200"
-            >
-              <ExternalLink className="w-3.5 h-3.5" /> Live demo
-            </a>
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => sounds.playClick()}
+                className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-slate-950 transition-colors hover:bg-slate-200"
+              >
+                <ExternalLink className="w-3.5 h-3.5" /> Live demo
+              </a>
+            )}
           </div>
         </div>
 

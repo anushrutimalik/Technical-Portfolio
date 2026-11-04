@@ -1,7 +1,7 @@
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Anushruti",
-    title: "Full-Stack Software Developer & AI Engineer",
+    title: "Full-Stack Software Engineer — Java",
     degree: "B.Tech in Computer Science & Engineering",
     institution: "Bharati Vidyapeeth's College of Engineering (BVCOE)",
     location: "New Delhi, India",
@@ -12,15 +12,15 @@ export const PORTFOLIO_DATA = {
     githubUsername: "anushrutimalik",
     linkedin: "https://linkedin.com/in/anushruti-malik",
     linkedinUsername: "anushruti-malik",
-    status: "Available for Software Engineering & AI Roles",
-    bio: "Passionate CS undergraduate (9.1 CGPA) with hands-on software engineering experience at AIIMS, Mama's Baby Lounge, and RPG Websolutions. Specialized in building high-throughput Spring Boot & Angular microservices, modern React web applications, and state-of-the-art PyTorch deep learning models."
+    status: "Open to full-time Java software engineering roles",
+    bio: "Results-driven Software Engineering student specializing in full-stack development with Java, Spring Boot, and Angular. Skilled in optimizing backend performance, building RESTful APIs, and delivering scalable solutions using Agile practices."
   },
-  
+
   stats: [
-    { label: "Cum. CGPA", value: "9.1", sub: "Top 20% in Batch" },
-    { label: "ML Model Accuracy", value: "97.5%", sub: "SyncTransformer-Net" },
-    { label: "User Sessions Handled", value: "10,000+", sub: "React JWT Auth" },
-    { label: "Open-Source PRs", value: "12+", sub: "GSSoC Top 5% Contributor" }
+    { label: "Cum. GPA", value: "9.1", sub: "BVCOE — B.Tech CSE" },
+    { label: "User Sessions Handled", value: "10,000+", sub: "JWT Auth @ Mama's Baby Lounge" },
+    { label: "Records Served", value: "100,000+", sub: "AIIMS EHS Portal" },
+    { label: "Open-Source PRs", value: "12+", sub: "GSSoC — Top 5% Contributor" }
   ],
 
   experience: [
@@ -28,15 +28,14 @@ export const PORTFOLIO_DATA = {
       id: "aiims",
       company: "All India Institute of Medical Sciences (AIIMS)",
       shortName: "AIIMS",
-      role: "Software Engineering Intern - EHS",
-      period: "Jun. 2026 – Jul. 2026",
+      role: "Software Engineer Intern — EHS",
+      period: "Jun. 2026 – Aug. 2026",
       location: "New Delhi, India",
       type: "Internship",
       highlights: [
-        "Architected a scalable backend infrastructure for the EHS portal using Spring Boot, Maven, and JSP; integrated Spring AI to automate query resolutions and streamline internal healthcare data processing.",
-        "Engineered responsive, high-performance user interfaces using Angular, enhancing system accessibility for medical staff and significantly optimizing the end-to-end management of digital health records."
+        "Developed the EHS portal card registration module using Spring Boot, JSP, and Angular, streamlining records for 100,000+ members using workflow diagrams (ER, DFD, Use-Case), Agile practices, and Unit Testing."
       ],
-      skills: ["Spring Boot", "Spring AI", "Angular", "Maven", "JSP", "Healthcare Systems", "Java"]
+      skills: ["Spring Boot", "Angular", "JSP", "Unit Testing", "ER/DFD Design", "Agile", "Java"]
     },
     {
       id: "mamas-baby-lounge",
@@ -47,24 +46,24 @@ export const PORTFOLIO_DATA = {
       location: "Noida, New Delhi, India",
       type: "Internship",
       highlights: [
-        "Engineered a dynamic React-based landing page, accelerating site load speed by 40% and boosting daily user engagement by 25%.",
-        "Architected a secure JWT authentication system effectively handling 10,000+ concurrent user sessions."
+        "Engineered a dynamic React landing page that boosted user engagement by 25% (analyzed via Google Analytics).",
+        "Built a secure JWT authentication system supporting 10,000+ concurrent user sessions within Scrum sprints."
       ],
-      skills: ["React", "JWT Auth", "JavaScript (ES6+)", "Page Speed Optimization", "UI/UX"]
+      skills: ["React", "JWT Auth", "JavaScript (ES6+)", "Google Analytics", "Scrum"]
     },
     {
       id: "rpg-websolutions",
       company: "RPG Websolutions",
       shortName: "RPG Websolutions",
       role: "Web Design & Development Intern",
-      period: "Jul. 2025",
+      period: "Jul. 2025 – Jul. 2025",
       location: "New Delhi, India",
       type: "Internship",
       highlights: [
-        "Spearheaded a complete homepage redesign, achieving a 45% reduction in page load times via aggressive lazy loading and CDN integration.",
-        "Drove a 35% surge in mobile traffic via heavily optimized, responsive Tailwind CSS layouts."
+        "Spearheaded a complete homepage redesign spanning 15+ client web modules, achieving a stellar 45% reduction in overall page load times via aggressive lazy loading.",
+        "Drove a 35% surge in mobile traffic through heavily optimized, responsive CSS layouts."
       ],
-      skills: ["Tailwind CSS", "Web Optimization", "CDN Integration", "Responsive Design", "Frontend Development"]
+      skills: ["Tailwind CSS", "Web Optimization", "Lazy Loading", "Responsive Design", "Frontend Development"]
     }
   ],
 
@@ -74,16 +73,16 @@ export const PORTFOLIO_DATA = {
       title: "Work Management System",
       category: "Full Stack",
       year: "2026",
-      tech: ["Java", "Spring Boot", "Angular", "PostgreSQL", "REST APIs"],
-      summary: "Architected a scalable full-stack task management portal featuring role-based access control and real-time status tracking to streamline team workflows.",
+      tech: ["Java", "Spring Boot", "Angular", "PostgreSQL", "AWS", "CI/CD"],
+      summary: "Architected a highly scalable full-stack task management portal featuring comprehensive role-based access control, real-time status tracking, and RESTful APIs supporting Microservices architecture with CI/CD pipelines.",
       highlights: [
-        "Role-Based Access Control (RBAC) securing manager and team member dashboards.",
-        "Real-time task status tracking and cross-functional data synchronization.",
-        "Optimized PostgreSQL queries for zero-latency workspace loading."
+        "Role-based access control (RBAC) securing manager and team member dashboards.",
+        "Real-time task status tracking across cross-functional teams.",
+        "RESTful APIs designed on a Microservices architecture with CI/CD pipelines."
       ],
-      architecture: "Spring Boot REST backend communicating with an Angular 17 SPA, backed by PostgreSQL relational persistence.",
-      github: "https://github.com/anushrutimalik/work-management-system",
-      demo: "https://work-management-system.demo.app",
+      architecture: "Spring Boot microservices + Angular SPA with PostgreSQL persistence, wired through an AWS-hosted CI/CD pipeline.",
+      github: "https://github.com/anushrutimalik",
+      demo: null,
       featured: true
     },
     {
@@ -91,16 +90,16 @@ export const PORTFOLIO_DATA = {
       title: "Library Management System",
       category: "Full Stack",
       year: "2026",
-      tech: ["Java", "Spring Boot", "Angular", "MySQL", "JWT"],
-      summary: "Developed a comprehensive digital library platform automating inventory management, book issuance, and user record tracking with JWT authentication.",
+      tech: ["Java", "Spring Boot", "Angular", "MySQL"],
+      summary: "Developed a digital library platform automating inventory tracking, book issuance, and user record management, while optimizing backend database queries and secure JWT authentication to reduce search latency by 30%.",
       highlights: [
-        "Automated book issuance, fine calculations, and catalog indexing.",
-        "Integrated secure JWT authentication handling multi-role user access.",
-        "Optimized backend database queries, reducing search latency by 30%."
+        "Automated book issuance, fine calculations, and catalogue indexing.",
+        "Secure JWT authentication with multi-role user access.",
+        "Optimized backend queries cutting search latency by 30%."
       ],
-      architecture: "Spring Boot Microservice + Angular Frontend with MySQL database indexing and JWT token validation.",
-      github: "https://github.com/anushrutimalik/library-management-system",
-      demo: "https://library-management.demo.app",
+      architecture: "Spring Boot application + Angular frontend with MySQL indexing and JWT token validation.",
+      github: "https://github.com/anushrutimalik",
+      demo: null,
       featured: true
     },
     {
@@ -108,16 +107,16 @@ export const PORTFOLIO_DATA = {
       title: "SyncTransformer-Net: Deepfake Detection",
       category: "Machine Learning",
       year: "2025",
-      tech: ["Python", "PyTorch", "Wav2Vec2.0", "Transformers", "Computer Vision"],
-      summary: "Co-engineered a multi-modal framework achieving 97.5% accuracy and 0.99 AUC on FakeAVCeleb by detecting audio-visual desynchronization.",
+      tech: ["Python", "PyTorch", "Wav2Vec2.0"],
+      summary: "Co-engineered an advanced multi-modal deepfake detection framework achieving 97.5% accuracy and 0.99 AUC by effectively detecting audio-visual desynchronization through specialized acoustic feature mapping pipelines.",
       highlights: [
-        "97.5% accuracy and 0.99 AUC on FakeAVCeleb benchmark dataset.",
-        "Acoustic pipeline mapping 16kHz audio to dense 1024D vector representations.",
-        "Exposed a 48.5% failure rate in traditional audio-only deepfake baselines."
+        "97.5% accuracy and 0.99 AUC on the FakeAVCeleb benchmark dataset.",
+        "Acoustic pipeline mapping 16kHz audio to dense vector representations.",
+        "Highlighted a 48.5% failure rate in traditional audio-only deepfake baselines."
       ],
       architecture: "Dual-stream neural network combining Wav2Vec2.0 audio encoder with spatial video feature transformers for temporal lip-sync cross-attention.",
-      github: "https://github.com/anushrutimalik/SyncTransformer-Net",
-      demo: "https://huggingface.co/spaces/anushrutimalik/SyncTransformer-Net",
+      github: "https://github.com/anushrutimalik",
+      demo: null,
       featured: true
     },
     {
@@ -126,15 +125,15 @@ export const PORTFOLIO_DATA = {
       category: "Machine Learning",
       year: "2025",
       tech: ["Python", "PyTorch", "CNN", "LSTM", "Smart India Hackathon"],
-      summary: "Developed a hybrid CNN-LSTM machine learning model for Smart India Hackathon to accurately detect crop diseases from 50,000+ agricultural images.",
+      summary: "Developed a hybrid CNN-LSTM ML model for the Smart India Hackathon to process 50,000+ crop images, achieving 96.8% diagnostic accuracy across 15 distinct disease classes.",
       highlights: [
         "96.8% diagnostic accuracy across 15 different crop disease categories.",
-        "Trained on a massive dataset of 50,000+ high-resolution agricultural crop images.",
-        "Optimized model inference pipeline for real-time mobile deployment in remote farms."
+        "Trained on a dataset of 50,000+ high-resolution agricultural crop images.",
+        "Optimized inference pipeline for real-time field deployment."
       ],
-      architecture: "Hybrid Convolutional Long Short-Term Memory (CNN-LSTM) neural architecture for visual feature extraction and spatio-temporal disease progression analysis.",
-      github: "https://github.com/anushrutimalik/AgriVision-SIH",
-      demo: "https://agrivision.demo.app",
+      architecture: "Hybrid Convolutional LSTM neural architecture for visual feature extraction and spatio-temporal disease progression analysis.",
+      github: "https://github.com/anushrutimalik",
+      demo: null,
       featured: true
     }
   ],
@@ -142,42 +141,42 @@ export const PORTFOLIO_DATA = {
   skills: {
     languages: [
       { name: "Java", level: 92, tag: "Primary Language" },
-      { name: "Python", level: 90, tag: "AI / ML & Scripts" },
-      { name: "C++", level: 85, tag: "Data Structures & Alg" },
+      { name: "Python", level: 88, tag: "ML & Scripting" },
       { name: "JavaScript (ES6+)", level: 88, tag: "Frontend & Web" },
+      { name: "C++", level: 85, tag: "Data Structures & Alg" },
       { name: "SQL", level: 86, tag: "Databases" },
       { name: "C", level: 80, tag: "Systems Programming" },
       { name: "HTML5 & CSS3", level: 95, tag: "Web Design" }
     ],
     frameworks: [
       { name: "Spring Boot", level: 90, tag: "Backend Framework" },
-      { name: "Spring AI", level: 85, tag: "AI Backend Integration" },
-      { name: "React", level: 88, tag: "Frontend SPA" },
-      { name: "Angular", level: 86, tag: "Enterprise Web Apps" },
-      { name: "PyTorch", level: 87, tag: "Deep Learning" },
+      { name: "Angular", level: 88, tag: "Frontend SPA" },
       { name: "Tailwind CSS", level: 92, tag: "UI Styling" },
       { name: "Scikit-learn", level: 84, tag: "Machine Learning" },
-      { name: "Pandas & NumPy", level: 88, tag: "Data Processing" }
+      { name: "Pandas", level: 88, tag: "Data Processing" },
+      { name: "NumPy", level: 86, tag: "Numerical Computing" },
+      { name: "Seaborn", level: 78, tag: "Data Visualisation" },
+      { name: "Matplotlib", level: 78, tag: "Data Visualisation" }
     ],
     tools: [
       { name: "Git & GitHub", level: 90 },
-      { name: "Maven", level: 85 },
       { name: "PostgreSQL", level: 88 },
-      { name: "MySQL", level: 86 },
       { name: "MongoDB", level: 80 },
-      { name: "Vercel", level: 85 },
+      { name: "MySQL", level: 86 },
+      { name: "Maven", level: 85 },
+      { name: "CI/CD", level: 82 },
       { name: "Figma", level: 78 },
-      { name: "Google Analytics", level: 75 }
+      { name: "Vercel", level: 85 },
+      { name: "REST APIs", level: 88 }
     ],
     coursework: [
-      "Data Structures & Algorithms (DSA)",
+      "Data Structures & Algorithms",
       "Object-Oriented Programming (OOPS)",
       "Database Management Systems (DBMS)",
       "Computer Networks (CN)",
       "Operating Systems (OS)",
       "Compiler Design",
-      "Theory of Computation (TOC)",
-      "PSLP"
+      "Discrete Mathematics"
     ]
   },
 
@@ -187,56 +186,49 @@ export const PORTFOLIO_DATA = {
       organization: "Technovate Hackathon",
       year: "2026",
       badge: "Winner",
-      desc: "Secured 1st Prize for constructing an innovative AI software solution under tight hackathon time constraints."
+      desc: "Secured 1st Prize for constructing an innovative software solution under tight hackathon time constraints."
     },
     {
       title: "3rd Runner-Up — Evotech 2026",
       organization: "Evotech Tech Fest",
       year: "2026",
       badge: "Finalist",
-      desc: "Awarded 3rd Runner-Up out of 100+ competing engineering teams."
-    },
-    {
-      title: "Selected Contributor — GirlScript Summer of Code (GSSoC)",
-      organization: "GirlScript Foundation",
-      year: "2025",
-      badge: "Top 5% Contributor",
-      desc: "Selected among top 5% of 30,000+ nationwide applicants. Contributed 12+ pull requests impacting 10,000+ lines of code across 3 open-source repositories."
+      desc: "Awarded 3rd Runner-Up out of 100+ competing teams."
     },
     {
       title: "1st Runner-Up — Anugoonj '25",
       organization: "GGSIPU Annual Fest",
       year: "2025",
       badge: "Runner-Up",
-      desc: "Recognized among top teams at GGSIPU's flagship annual technological showcase."
+      desc: "Placed among the top teams at GGSIPU's flagship annual technological showcase."
+    },
+    {
+      title: "Selected Contributor — GirlScript Summer of Code",
+      organization: "GirlScript Foundation",
+      year: "2025",
+      badge: "Top 5% Contributor",
+      desc: "Selected among the top 5% of 30,000+ nationwide applicants; contributed 12+ pull requests across open-source repositories."
     },
     {
       title: "Selected Participant — Smart India Hackathon (SIH 2025)",
       organization: "Ministry of Education, Govt of India",
       year: "2025",
       badge: "National Participant",
-      desc: "Shortlisted for SIH 2025 for AgriVision crop disease detection AI project."
+      desc: "Shortlisted for SIH 2025 for the AgriVision crop disease detection project."
     },
     {
       title: "President — Aagaaz Music Society",
       organization: "BVCOE",
-      year: "2025 – 2026",
+      year: "Aug 2025 – Jun 2026",
       badge: "Leadership",
-      desc: "Direct a premier collegiate society of 150+ members, managing administrative operations and executing events drawing 2,000+ attendees."
+      desc: "Directed a collegiate society of 150+ members, managing operations, budget, and high-impact events drawing 2,000+ attendees."
     },
     {
       title: "Head of E-Cell (Entrepreneurship)",
       organization: "BVCOE",
-      year: "2024 – Present",
+      year: "Aug 2024 – Jun 2025",
       badge: "Leadership",
-      desc: "Lead campus entrepreneurship cell, organizing pitch sessions and representing college at National Entrepreneurship Challenge (NEC) at E-Summit IIT Bombay."
-    },
-    {
-      title: "Top Performer — BVCOE CSE Batch",
-      organization: "BVCOE Department of CSE",
-      year: "2024 – 2025",
-      badge: "Academic Excellence",
-      desc: "Maintained dominant 9.1 CGPA with 95%+ in 15+ core CS courses, consistently ranking in top 20% of 134-student cohort."
+      desc: "Governed campus entrepreneurship initiatives — startup pitch sessions and networking events — representing BVCOE at the National Entrepreneurship Challenge (NEC) at E-Cell IIT Bombay."
     }
   ],
 
@@ -244,19 +236,13 @@ export const PORTFOLIO_DATA = {
     {
       name: "DSA in Java",
       issuer: "Coding Blocks",
-      year: "2026",
+      year: "Jan 2026",
       verifyUrl: "#"
     },
     {
-      name: "Microsoft Excel - Advanced Analytics",
+      name: "MS Excel",
       issuer: "Udemy",
-      year: "2025",
-      verifyUrl: "#"
-    },
-    {
-      name: "Digital Marketing Specialization",
-      issuer: "Udemy",
-      year: "2024",
+      year: "Aug 2025",
       verifyUrl: "#"
     }
   ]

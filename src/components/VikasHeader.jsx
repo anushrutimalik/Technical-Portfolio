@@ -26,7 +26,7 @@ export default function VikasHeader({ onOpenSearch }) {
 
           {/* Greeting Pill */}
           <div className="relative flex items-center h-11 rounded-2xl border px-4 bg-[#07070c]/70 border-white/10 backdrop-blur-xl shadow-lg">
-            <span className="text-xs font-medium text-slate-300">
+            <span className="text-xs font-medium text-slate-300 whitespace-nowrap">
               {greeting}, welcome to Anushruti's portfolio
             </span>
           </div>

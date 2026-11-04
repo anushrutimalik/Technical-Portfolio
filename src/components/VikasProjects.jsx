@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, ArrowUpRight, Github } from 'lucide-react';
 import { sounds } from '../utils/soundEffects';
+import StardustButton from './StardustButton';
 
 export default function VikasProjects({ projects, onSelectProject }) {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -19,11 +20,11 @@ export default function VikasProjects({ projects, onSelectProject }) {
         <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <span className="eyebrow">Selected work</span>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-white">
+            <h2 className="mt-3 t-section-title">
               Featured <span className="text-sky-300">projects</span>
             </h2>
             <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl font-light leading-relaxed">
-              High-throughput full-stack systems and multi-modal AI research models — shipped, benchmarked, and maintained.
+              Full-stack systems with Spring Boot, Angular and PostgreSQL — built, shipped and benchmarked.
             </p>
           </div>
 
@@ -77,16 +78,17 @@ export default function VikasProjects({ projects, onSelectProject }) {
 
               {/* Actions */}
               <div className="mt-auto pt-4 mt-5 border-t border-white/[0.06] flex items-center justify-between gap-4">
-                <button
+                <StardustButton
+                  size="sm"
                   onClick={() => {
                     sounds.playOpenModal();
                     onSelectProject(project);
                   }}
-                  className="group/btn inline-flex items-center gap-1.5 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors cursor-pointer"
+                  ariaLabel={`Open case study for ${project.title}`}
                 >
                   Case study
-                  <Eye className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />
-                </button>
+                  <Eye className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </StardustButton>
 
                 <div className="flex items-center gap-2">
                   <a
@@ -95,20 +97,24 @@ export default function VikasProjects({ projects, onSelectProject }) {
                     rel="noopener noreferrer"
                     onClick={() => sounds.playClick()}
                     className="p-2.5 rounded-lg text-slate-400 hover:text-white border border-white/[0.08] hover:border-white/20 transition-all"
-                    aria-label="View GitHub repository"
+                    aria-label="View on GitHub"
+                    title="View on GitHub"
                   >
                     <Github className="w-4 h-4" />
                   </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => sounds.playClick()}
-                    className="p-2.5 rounded-lg bg-white text-slate-950 hover:bg-slate-200 transition-all"
-                    aria-label="Open live demo"
-                  >
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => sounds.playClick()}
+                      className="p-2.5 rounded-lg bg-white text-slate-950 hover:bg-slate-200 transition-all"
+                      aria-label="Open live demo"
+                      title="Live demo"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
             </article>

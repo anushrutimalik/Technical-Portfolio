@@ -33,6 +33,7 @@ export default function CommandPalette({ isOpen, onClose, data }) {
     { type: 'Project', name: 'AgriVision: Crop Disease Detection SIH 2025', href: '#projects', icon: FolderGit2 },
     { type: 'Project', name: 'Work Management System (Spring Boot + Angular)', href: '#projects', icon: FolderGit2 },
     { type: 'Project', name: 'Library Management System (Spring Boot + JWT)', href: '#projects', icon: FolderGit2 },
+    { type: 'Action', name: 'Download Resume PDF', href: '/Anushruti_Resume.pdf', external: true, icon: FileText },
     { type: 'Action', name: 'GitHub Profile (anushrutimalik)', href: data.personal.github, external: true, icon: Github },
     { type: 'Action', name: 'LinkedIn Profile (anushruti-malik)', href: data.personal.linkedin, external: true, icon: Linkedin },
   ];

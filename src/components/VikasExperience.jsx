@@ -9,7 +9,7 @@ export default function VikasExperience({ experiences }) {
         {/* Header */}
         <div className="mb-8 md:mb-10">
           <span className="eyebrow">Experience</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl text-white">
+          <h2 className="mt-3 t-section-title">
             Where I've <span className="text-sky-300">built</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl font-light leading-relaxed">

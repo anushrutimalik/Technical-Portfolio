@@ -47,10 +47,11 @@ export default function TerminalModal({ isOpen, onClose, data }) {
   whoami        - Display Anushruti's background & GPA
   skills        - List technical stack (Languages, Frameworks, DBs)
   experience    - Display internship details (AIIMS, Mama's Baby Lounge, RPG)
-  projects      - List featured projects (SyncTransformer-Net, AgriVision, etc.)
+  projects      - List featured projects (Work Mgmt, Library Mgmt, SIH)
   achievements  - Display hackathons, awards, and GSSoC status
   certifications- Display verified certifications
   contact       - Output email, phone, GitHub, and LinkedIn
+  cat resume    - Open/download official Java Dev resume (PDF)
   clear         - Clear terminal console
   exit          - Close terminal window`
           });
@@ -61,10 +62,10 @@ export default function TerminalModal({ isOpen, onClose, data }) {
           newHistory.push({
             type: 'output',
             text: `NAME: Anushruti
-ROLE: Full-Stack Software Developer & AI Engineer
-DEGREE: B.Tech in Computer Science & Engineering @ BVCOE, New Delhi (2023-2027)
-GPA: 9.1 / 10.0 (Top 20% in CSE Cohort)
-SUMMARY: Specialized in Spring Boot, Angular, React, and PyTorch deep learning models.`
+ROLE: Full-Stack Software Engineer — Java
+DEGREE: B.Tech in Computer Science & Engineering @ BVCOE, New Delhi (Aug 2023 – Jul 2027)
+GPA: 9.1 / 10.0
+SUMMARY: Full-stack development with Java, Spring Boot, and Angular — REST APIs, backend performance, scalable delivery (Agile).`
           });
           break;
 
@@ -72,10 +73,10 @@ SUMMARY: Specialized in Spring Boot, Angular, React, and PyTorch deep learning m
           newHistory.push({
             type: 'output',
             text: `TECHNICAL SKILLS:
-  Languages : Java, Python, C++, JavaScript (ES6+), SQL, C, HTML5, CSS3
-  Frameworks: Spring Boot, Spring AI, React, Angular, PyTorch, Tailwind CSS, Scikit-learn
-  Tools/DBs : Git, GitHub, Maven, PostgreSQL, MySQL, MongoDB, Vercel, Figma
-  CS Core   : DSA, OOPS, DBMS, Computer Networks, Operating Systems, Compiler Design, TOC`
+  Languages : Java, Python, C, C++, JavaScript (ES6+), SQL, HTML5, CSS3
+  Frameworks: Spring Boot, Angular, Tailwind CSS, Scikit-learn, Pandas, NumPy
+  Tools/DBs : Git, GitHub, Maven, CI/CD, PostgreSQL, MySQL, MongoDB, Figma, Vercel, REST APIs
+  CS Core   : DSA, OOPS, DBMS, Computer Networks, Operating Systems, Compiler Design, Discrete Mathematics`
           });
           break;
 
@@ -83,16 +84,16 @@ SUMMARY: Specialized in Spring Boot, Angular, React, and PyTorch deep learning m
           newHistory.push({
             type: 'output',
             text: `WORK EXPERIENCE:
-1. AIIMS (Software Engineering Intern - EHS | Jun-Jul 2026)
-   - Architected Spring Boot + JSP backend; integrated Spring AI for healthcare queries.
-   - Built responsive Angular interfaces for digital health records.
+1. AIIMS (Software Engineer Intern - EHS | Jun-Aug 2026)
+   - EHS portal card registration module — Spring Boot, JSP, Angular for 100,000+ members.
+   - ER/DFD/Use-Case workflow diagrams; Agile practices; Unit Testing.
 
 2. Mama's Baby Lounge (Web Development Intern | Jul-Sep 2025)
-   - React landing page accelerating load speed by 40%.
-   - JWT authentication handling 10,000+ concurrent user sessions.
+   - React landing page; +25% engagement (Google Analytics).
+   - JWT authentication supporting 10,000+ concurrent user sessions (Scrum sprints).
 
-3. RPG Websolutions (Web Design Intern | Jul 2025)
-   - 45% reduction in homepage load times via aggressive lazy loading & CDN.`
+3. RPG Websolutions (Web Design & Development Intern | Jul 2025)
+   - Homepage redesign across 15+ client modules; 45% load-time reduction.`
           });
           break;
 
@@ -100,10 +101,10 @@ SUMMARY: Specialized in Spring Boot, Angular, React, and PyTorch deep learning m
           newHistory.push({
             type: 'output',
             text: `FEATURED PROJECTS:
-1. SyncTransformer-Net (Deepfake Detection) - 97.5% Accuracy | PyTorch, Wav2Vec2.0
-2. AgriVision SIH (Crop Disease Detection) - 96.8% Accuracy | PyTorch, CNN-LSTM
-3. Work Management System - Full-Stack Task Portal | Spring Boot, Angular, PostgreSQL
-4. Library Management System - Inventory & JWT Auth | Spring Boot, Angular, MySQL`
+1. Work Management System - RBAC portal, real-time tracking | Java, Spring Boot, Angular, PostgreSQL, AWS, CI/CD
+2. Library Management System - Automation + JWT auth, -30% latency | Java, Spring Boot, Angular, MySQL
+3. SyncTransformer-Net (Deepfake Detection) - 97.5% Accuracy | Python, PyTorch, Wav2Vec2.0
+4. AgriVision SIH (Crop Disease Detection) - 96.8% Accuracy | Python, PyTorch, CNN-LSTM`
           });
           break;
 
@@ -125,9 +126,8 @@ SUMMARY: Specialized in Spring Boot, Angular, React, and PyTorch deep learning m
           newHistory.push({
             type: 'output',
             text: `CERTIFICATIONS:
-• DSA in Java - Coding Blocks (2026)
-• Microsoft Excel Advanced Analytics - Udemy (2025)
-• Digital Marketing Specialization - Udemy (2024)`
+• DSA in Java - Coding Blocks (Jan 2026)
+• MS Excel - Udemy (Aug 2025)`
           });
           break;
 
@@ -139,6 +139,15 @@ Email   : anushrutimalik@gmail.com
 Phone   : +91 85956 20079
 GitHub  : https://github.com/anushrutimalik
 LinkedIn: https://linkedin.com/in/anushruti-malik`
+          });
+          break;
+
+        case 'cat resume':
+        case 'resume':
+          window.open('/Anushruti_Resume.pdf', '_blank');
+          newHistory.push({
+            type: 'output',
+            text: 'Opening Java Dev resume PDF in a new tab...'
           });
           break;
 

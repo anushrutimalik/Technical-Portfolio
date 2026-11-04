@@ -18,7 +18,7 @@ export default function VikasFooter({ personal }) {
   };
 
   return (
-    <footer className="relative z-20 bg-[#04060d]/80 backdrop-blur-2xl border-t border-sky-300/15 text-slate-400 font-sans overflow-hidden shadow-[0_-20px_60px_-30px_rgba(56,189,248,0.35)] min-h-[calc(100svh-4rem)] flex flex-col justify-center py-24">
+    <footer id="end" className="relative z-20 bg-transparent text-slate-400 font-sans overflow-hidden min-h-[calc(100svh_-_4rem)] flex flex-col justify-center py-24">
 
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
@@ -30,7 +30,7 @@ export default function VikasFooter({ personal }) {
               From concept to creation, <span className="bg-gradient-to-r from-sky-200 via-sky-400 to-sky-600 bg-clip-text text-transparent">let's make it happen.</span>
             </h2>
             <p className="text-slate-400 text-sm font-light">
-              Looking for a high-performing Full-Stack & AI Software Engineer for your team or product? Get in touch.
+              Looking for a high-performing Java Full-Stack Engineer for your team or product? Get in touch.
             </p>
           </div>
 

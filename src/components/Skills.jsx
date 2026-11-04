@@ -42,12 +42,12 @@ export default function Skills({ skills }) {
         <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-5">
           <div>
             <span className="eyebrow">Skills</span>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-white">
+            <h2 className="mt-3 t-section-title">
               Technical <span className="text-sky-300">proficiency</span>
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Core CS foundations paired with enterprise backend engineering, frontend SPAs, and ML frameworks.
+            Core CS foundations paired with enterprise backend engineering, frontend SPAs, and Java and Spring Boot delivery.
           </p>
         </div>
 

@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Briefcase, FolderGit2, Code2, Trophy, Mail, Github, Linkedin, Search, Terminal, Music, Pause } from 'lucide-react';
+import { Home, Briefcase, FolderGit2, Code2, Trophy, Mail, Github, Linkedin, Download, Search, Terminal, Volume2, VolumeX } from 'lucide-react';
 import { sounds } from '../utils/soundEffects';
 
 const SIGNT = 'qN4ooNx77u0'; // Harry Styles — Sign of the Times (official video ID)
 
 export default function FloatingDock({ personal, onOpenSearch, onOpenTerminal, musicEnabled = false }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [moonHint, setMoonHint] = useState(false);
   const playerRef = useRef(null);
   const containerRef = useRef(null);
   const wantedRef = useRef(false);
   const musicEnabledRef = useRef(false);
 
-  // Boot the hidden YouTube player once. pause/play preserves the position,
-  // so "turning off" the music and turning it back on resumes where it stopped.
+  // Boot the hidden YouTube player once, muted. The moon click un-mutes it;
+  // toggling the dock button only mutes/unmutes, so playback always resumes
+  // from the part it would be on if you never touched it.
   useEffect(() => {
     let cancelled = false;
 
@@ -35,21 +36,19 @@ export default function FloatingDock({ personal, onOpenSearch, onOpenTerminal, m
           onReady: (e) => {
             try {
               e.target.setVolume(55);
+              e.target.mute();
             } catch {
               /* ignore */
             }
             if (wantedRef.current) {
               try {
                 e.target.playVideo();
+                e.target.unMute();
+                setMuted(false);
               } catch {
-                /* autoplay may be blocked; user gesture will retry */
+                /* autoplay may be blocked; moon click gesture will retry */
               }
             }
-          },
-          onStateChange: (e) => {
-            // 1 = playing, 2 = paused, 0 = ended (looped anyway)
-            if (e.data === 1) setPlaying(true);
-            if (e.data === 2) setPlaying(false);
           },
         },
       });
@@ -84,14 +83,14 @@ export default function FloatingDock({ personal, onOpenSearch, onOpenTerminal, m
     }
     if (!player) return; // still loading
     try {
-      if (playing) {
-        player.pauseVideo();
-        wantedRef.current = false;
-        setPlaying(false);
+      if (muted) {
+        // Unmuting never restarts — you hear exactly where it is right now.
+        if (player.playVideo) player.playVideo();
+        player.unMute();
+        setMuted(false);
       } else {
-        player.playVideo();
-        wantedRef.current = true;
-        setPlaying(true);
+        player.mute();
+        setMuted(true);
       }
     } catch {
       /* ignore */
@@ -107,7 +106,8 @@ export default function FloatingDock({ personal, onOpenSearch, onOpenTerminal, m
     if (player && player.playVideo) {
       try {
         player.playVideo();
-        setPlaying(true);
+        player.unMute();
+        setMuted(false);
       } catch {
         /* blocked — retried via the moon click gesture path */
       }
@@ -123,9 +123,10 @@ export default function FloatingDock({ personal, onOpenSearch, onOpenTerminal, m
     { label: 'Contact', href: '#contact', icon: Mail },
     { label: 'CLI Terminal', action: 'terminal', icon: Terminal },
     { label: 'Search ⌘K', action: 'search', icon: Search },
-    { label: musicEnabled ? (playing ? 'Pause “Sign of the Times”' : 'Play “Sign of the Times”') : 'The moon starts the music 🌕', action: 'music', icon: playing ? Pause : Music, active: playing },
+    { label: musicEnabled ? (muted ? 'Unmute “Sign of the Times”' : 'Mute “Sign of the Times”') : 'The moon starts the music 🌕', action: 'music', icon: muted ? VolumeX : Volume2, active: musicEnabled && !muted },
     { label: 'GitHub', href: personal.github, external: true, icon: Github },
     { label: 'LinkedIn', href: personal.linkedin, external: true, icon: Linkedin },
+    { label: 'Resume PDF', href: '/Anushruti_Resume.pdf', external: true, icon: Download },
   ];
 
   const handleClick = (e, item) => {

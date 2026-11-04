@@ -1,31 +1,65 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { sounds } from '../utils/soundEffects';
+import StardustButton from './StardustButton';
+
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || '';
 
 export default function Contact({ personal }) {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    _gotcha: '', // honeypot — humans never see this, bots fill it
   });
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
     sounds.playClick();
-    setLoading(true);
+    setStatus('sending');
+    setErrorMessage('');
 
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      setFormState({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+    // No endpoint configured yet: fall back to the visitor's mail client
+    if (!FORMSPREE_ENDPOINT) {
+      const subject = encodeURIComponent(formState.subject || `Portfolio contact from ${formState.name}`);
+      const body = encodeURIComponent(`${formState.message}\n\n— ${formState.name} (${formState.email})`);
+      window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
+      setStatus('success');
+      setFormState({ name: '', email: '', subject: '', message: '', _gotcha: '' });
+      return;
+    }
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          _gotcha: formState._gotcha,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormState({ name: '', email: '', subject: '', message: '', _gotcha: '' });
+      } else {
+        const data = await res.json().catch(() => null);
+        setErrorMessage(data?.error || `Form service responded with ${res.status}.`);
+        setStatus('error');
+      }
+    } catch (err) {
+      setErrorMessage('Network error — check your connection and try again.');
+      setStatus('error');
+    }
   };
 
   const contactRows = [
@@ -41,11 +75,11 @@ export default function Contact({ personal }) {
         {/* Header */}
         <div className="mb-8 md:mb-10">
           <span className="eyebrow">Contact</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl text-white">
+          <h2 className="mt-3 t-section-title">
             Let's work <span className="text-sky-300">together</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl font-light leading-relaxed">
-            Open to engineering roles, AI project collaborations, or just talking shop.
+            Open to Java software engineering roles, full-stack collaborations, or just talking shop.
           </p>
         </div>
 
@@ -102,12 +136,35 @@ export default function Contact({ personal }) {
 
           {/* Message form */}
           <form onSubmit={handleSubmit} className="lg:col-span-7 card p-5 space-y-4">
-            {submitted && (
-              <div className="flex items-center gap-2.5 rounded-xl border border-sky-400/30 bg-sky-400/10 p-4 text-sm text-sky-300">
-                <CheckCircle className="w-5 h-5 text-sky-400 shrink-0" />
-                Message sent — I'll get back to you shortly.
+            {status === 'success' && (
+              <div className="flex items-center gap-2.5 rounded-xl border border-sky-400/30 bg-sky-400/10 p-4 text-sm text-sky-200" role="status">
+                <CheckCircle className="w-5 h-5 text-sky-300 shrink-0" />
+                Message sent — it landed in Anushruti's inbox. I'll get back to you shortly.
               </div>
             )}
+            {status === 'error' && (
+              <div className="flex items-start gap-2.5 rounded-xl border border-rose-400/30 bg-rose-400/10 p-4 text-sm text-rose-200" role="alert">
+                <AlertCircle className="w-5 h-5 text-rose-300 shrink-0 mt-0.5" />
+                <span>
+                  Couldn't send that — {errorMessage}{' '}
+                  <a href={`mailto:${personal.email}`} className="underline font-semibold hover:text-rose-100">
+                    Email directly instead
+                  </a>.
+                </span>
+              </div>
+            )}
+
+            {/* Honeypot — invisible to humans, catches bots */}
+            <input
+              type="text"
+              name="_gotcha"
+              value={formState._gotcha}
+              onChange={(e) => setFormState({ ...formState, _gotcha: e.target.value })}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0 }}
+            />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
@@ -143,7 +200,7 @@ export default function Contact({ personal }) {
                 type="text"
                 value={formState.subject}
                 onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                placeholder="Full-Stack / AI opportunity"
+                placeholder="Full-Stack Java opportunity"
                 className="field"
               />
             </div>
@@ -161,20 +218,23 @@ export default function Contact({ personal }) {
               />
             </div>
 
-            <button
+            <StardustButton
               type="submit"
-              disabled={loading}
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white text-sm font-semibold text-slate-950 transition-all hover:bg-slate-200 disabled:opacity-60 cursor-pointer"
+              disabled={status === 'sending'}
+              size="lg"
+              className="w-full !h-12 !rounded-xl text-sm"
+              innerClassName="text-sm"
+              ariaLabel="Send message"
             >
-              {loading ? (
+              {status === 'sending' ? (
                 <span>Sending…</span>
               ) : (
                 <>
                   Send message
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
-            </button>
+            </StardustButton>
           </form>
 
         </div>

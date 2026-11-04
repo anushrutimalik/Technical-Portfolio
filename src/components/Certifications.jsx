@@ -9,7 +9,7 @@ export default function Certifications({ certifications }) {
         {/* Header */}
         <div className="mb-8">
           <span className="eyebrow">Credentials</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl text-white">
+          <h2 className="mt-3 t-section-title">
             Certifications
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl font-light leading-relaxed">
@@ -18,7 +18,7 @@ export default function Certifications({ certifications }) {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">
           {certifications.map((cert, idx) => (
             <div key={idx} className="card p-5 flex flex-col transition-colors hover:border-sky-400/25">
               <div className="w-10 h-10 rounded-xl border border-sky-400/25 bg-sky-400/10 flex items-center justify-center text-sky-400">

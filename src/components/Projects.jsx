@@ -22,10 +22,10 @@ export default function Projects({ projects, onSelectProject }) {
               <FolderGit2 className="w-3.5 h-3.5" /> FEATURED PROJECTS // CASE STUDIES
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Software & AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-400">Deployments</span>
+              Software Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-400">Deployments</span>
             </h2>
             <p className="text-slate-400 text-sm max-w-xl">
-              Full-stack enterprise applications and deep learning research models engineered for performance and precision.
+              Full-stack enterprise applications and enterprise full-stack systems engineered for performance and precision.
             </p>
           </div>
 

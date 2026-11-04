@@ -1,7 +1,37 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function CosmosBackground() {
+const BURST_CAP = 1500;
+const BURST_PER_PAGE = 170;
+const BURST_PER_FRAME = 9;
+const GOLDEN_ANGLE = 2.399963229; // rad — phyllotaxis spiral spacing
+
+export default function CosmosBackground({ burstSignal = { n: 0, origin: null } }) {
   const canvasRef = useRef(null);
+  const burstStarsRef = useRef([]);
+  const pendingBurstsRef = useRef([]);
+  const lastBurstNRef = useRef(0);
+
+  useEffect(() => {
+    if (!burstSignal || burstSignal.n === lastBurstNRef.current) return;
+    lastBurstNRef.current = burstSignal.n;
+    if (burstSignal.n === 0) return;
+
+    const origin = burstSignal.origin ?? { x: window.innerWidth * 0.25, y: window.innerHeight * 0.4, width: window.innerWidth * 0.5, height: 80 };
+    const room = Math.max(0, BURST_CAP - burstStarsRef.current.length - pendingBurstsRef.current.reduce((sum, b) => sum + b.remaining, 0));
+    const count = Math.min(BURST_PER_PAGE, room);
+    if (count > 0) {
+      pendingBurstsRef.current.push({
+        x: origin.x,
+        y: origin.y,
+        w: origin.width ?? 200,
+        h: origin.height ?? 80,
+        remaining: count,
+        total: count,
+        spawned: 0,
+        rotation: Math.random() * Math.PI * 2,
+      });
+    }
+  }, [burstSignal]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -87,6 +117,49 @@ export default function CosmosBackground() {
       ctx.clearRect(0, 0, width, height);
       ctx.drawImage(nebula, 0, 0, width, height);
 
+      // Pending bursts trickle in over frames — fluent instead of instant
+      const pending = pendingBurstsRef.current;
+      if (pending.length) {
+        for (let b = pending.length - 1; b >= 0; b--) {
+          const burst = pending[b];
+          const room = Math.max(0, BURST_CAP - burstStarsRef.current.length);
+          const n = Math.min(BURST_PER_FRAME, burst.remaining, room);
+          const spiralColors = [
+            'rgba(255, 255, 255, ',
+            'rgba(255, 255, 255, ',
+            'rgba(255, 255, 255, ',
+            'rgba(186, 230, 253, ',
+            'rgba(224, 242, 254, ',
+            'rgba(224, 215, 255, ',
+          ];
+          for (let i = 0; i < n; i++) {
+            const index = burst.spawned + i;
+            // Golden-angle spiral velocity vectors, positions spread across the whole title block
+            const angle = burst.rotation + index * GOLDEN_ANGLE;
+            const radius = 4 + Math.sqrt(index / burst.total) * 30;
+            const speed = 1.4 + (index / burst.total) * 2.1;
+            const isBright = index % 34 === 0;
+
+            burstStarsRef.current.push({
+              x: burst.x + Math.random() * burst.w,
+              y: burst.y + Math.random() * burst.h,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed * 0.85,
+              radius: isBright ? Math.random() * 1.1 + 0.9 : Math.random() * 0.75 + 0.3,
+              colorPrefix: spiralColors[index % spiralColors.length],
+              baseAlpha: Math.random() * 0.45 + 0.4,
+              twinkleSpeed: Math.random() * 0.03 + 0.012,
+              twinklePhase: Math.random() * Math.PI * 2,
+              hasCross: isBright,
+              friction: 0.975 + Math.random() * 0.014,
+            });
+          }
+          burst.spawned += n;
+          burst.remaining -= n;
+          if (burst.remaining <= 0 || room <= 0) pending.splice(b, 1);
+        }
+      }
+
       const scrollY = window.scrollY || window.pageYOffset || 0;
       const density = densityAt(scrollY, 0);
 
@@ -103,6 +176,34 @@ export default function CosmosBackground() {
           ? `rgba(186,230,253, ${alpha})`
           : `rgba(255, 255, 255, ${alpha})`;
         ctx.fill();
+      }
+
+      // Burst stars (spawned when a section is reached) — spread like the moon burst
+      const burstStars = burstStarsRef.current;
+      for (let i = 0; i < burstStars.length; i++) {
+        const s = burstStars[i];
+        if (Math.abs(s.vx) > 0.05 || Math.abs(s.vy) > 0.05) {
+          s.x += s.vx;
+          s.y += s.vy;
+          s.vx *= s.friction;
+          s.vy *= s.friction;
+        }
+        const twinkle = Math.sin(frame * s.twinkleSpeed + s.twinklePhase);
+        const alpha = Math.max(0, Math.min(1, s.baseAlpha * (0.65 + 0.35 * twinkle)));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `${s.colorPrefix}${alpha})`;
+        ctx.fill();
+        if (s.hasCross && alpha > 0.4) {
+          ctx.strokeStyle = `rgba(255,255,255,${alpha * 0.5})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(s.x - 5, s.y);
+          ctx.lineTo(s.x + 5, s.y);
+          ctx.moveTo(s.x, s.y - 5);
+          ctx.lineTo(s.x, s.y + 5);
+          ctx.stroke();
+        }
       }
 
       // Occasional shooting stars

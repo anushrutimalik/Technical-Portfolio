@@ -81,7 +81,7 @@ export const PORTFOLIO_DATA = {
         "RESTful APIs designed on a Microservices architecture with CI/CD pipelines."
       ],
       architecture: "Spring Boot microservices + Angular SPA with PostgreSQL persistence, wired through an AWS-hosted CI/CD pipeline.",
-      github: "https://github.com/anushrutimalik",
+      github: "https://github.com/anushrutimalik/workify-new",
       demo: null,
       featured: true
     },
@@ -98,7 +98,7 @@ export const PORTFOLIO_DATA = {
         "Optimized backend queries cutting search latency by 30%."
       ],
       architecture: "Spring Boot application + Angular frontend with MySQL indexing and JWT token validation.",
-      github: "https://github.com/anushrutimalik",
+      github: "https://github.com/anushrutimalik/library-management",
       demo: null,
       featured: true
     },
@@ -115,7 +115,7 @@ export const PORTFOLIO_DATA = {
         "Highlighted a 48.5% failure rate in traditional audio-only deepfake baselines."
       ],
       architecture: "Dual-stream neural network combining Wav2Vec2.0 audio encoder with spatial video feature transformers for temporal lip-sync cross-attention.",
-      github: "https://github.com/anushrutimalik",
+      github: "https://github.com/anushrutimalik/sync-transformer-net",
       demo: null,
       featured: true
     },
@@ -132,7 +132,7 @@ export const PORTFOLIO_DATA = {
         "Optimized inference pipeline for real-time field deployment."
       ],
       architecture: "Hybrid Convolutional LSTM neural architecture for visual feature extraction and spatio-temporal disease progression analysis.",
-      github: "https://github.com/anushrutimalik",
+      github: "https://github.com/anushrutimalik/agrivision",
       demo: null,
       featured: true
     }
